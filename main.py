@@ -1,6 +1,9 @@
 import sys
+
 import yaml
 import speech_recognition as sr
+
+from brain import brain
 from GreyMatter.SenseCells.tts import tts
 
 profile = open('profile.yaml')
@@ -25,6 +28,6 @@ def main():
     except sr.RequestError as e:
         print("Could not request results from Google Speech Recognition service; {0}".format(e))
 	
-    tts(speech_text)
+    brain(name, speech_text)
     
 main()
