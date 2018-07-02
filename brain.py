@@ -1,5 +1,5 @@
-from GreyMatter import tell_time, general_conversations, weather, define_subject, who_is_this_person,business_news_reader
-
+from GreyMatter import tell_time, general_conversations, weather, define_subject, who_is_this_person,news_reader
+from GreyMatter.SenseCells.tts import tts
 def brain(name, speech_text, city_name, city_code):
     def check_message(check):
         words_of_message = speech_text.split()
@@ -29,7 +29,7 @@ def brain(name, speech_text, city_name, city_code):
     elif check_message(['time']):
         tell_time.what_is_time()
         
-    elif check_message(['how' ,'weather']) or check_message(['hows', 'weather']):
+    elif check_message(['weather']) or check_message(['hows', 'weather']):
         weather.weather(city_name, city_code)
         
     elif check_message(['define']):
@@ -38,8 +38,8 @@ def brain(name, speech_text, city_name, city_code):
     elif check_message(['who','is']):
         who_is_this_person.who_is_this_person(speech_text)
         
-    elif check_message(['business','news']):
-        business_news_reader.news_reader()
+    elif check_message(['headlines','news']):
+        news_reader.news_reader()
     
     else:
         general_conversations.undefined()
