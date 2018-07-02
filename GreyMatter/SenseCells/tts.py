@@ -10,4 +10,5 @@ def tts(message):
         return os.system(tts_engine + ' ' + message)
     elif sys.platform == 'linux2' or sys.platform == 'linux':
         tts_engine = 'espeak'
+        message= message.replace(str(chr(34)),"")
         return os.system(tts_engine + ' "' + message + '"')
