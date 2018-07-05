@@ -1,4 +1,4 @@
-from GreyMatter import tell_time, general_conversations, weather, define_subject, who_is_this_person,news_reader
+from GreyMatter import tell_time, general_conversations, weather, define_subject, who_is_this_person,news_reader, open_firefox, sleep
 from GreyMatter.SenseCells.tts import tts
 def brain(name, speech_text, city_name, city_code):
     def check_message(check):
@@ -40,6 +40,12 @@ def brain(name, speech_text, city_name, city_code):
         
     elif check_message(['headlines','news']):
         news_reader.news_reader()
+        
+    elif check_message(['open', 'firefox']):
+        open_firefox.open_firefox()
+        
+    elif check_message(['sleep']):
+        sleep.go_to_sleep()
     
     else:
         general_conversations.undefined()
