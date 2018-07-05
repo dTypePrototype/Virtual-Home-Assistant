@@ -1,6 +1,6 @@
-from GreyMatter import tell_time, general_conversations, weather, define_subject, who_is_this_person,news_reader, open_firefox, sleep
+from GreyMatter import tell_time, general_conversations, weather, define_subject, who_is_this_person,news_reader, open_firefox, sleep, play_music
 from GreyMatter.SenseCells.tts import tts
-def brain(name, speech_text, city_name, city_code):
+def brain(name, speech_text, music_path, city_name, city_code):
     def check_message(check):
         words_of_message = speech_text.split()
         if set(check).issubset(set(words_of_message)):
@@ -25,6 +25,9 @@ def brain(name, speech_text, city_name, city_code):
 
     elif check_message(['how', 'are', 'you']):
         general_conversations.how_are_you()
+        
+    elif check_message(['party', 'time']) or check_message(['party', 'mix']):
+        play_music.play_shuffle(music_path)
     
     elif check_message(['time']):
         tell_time.what_is_time()
@@ -46,7 +49,13 @@ def brain(name, speech_text, city_name, city_code):
         
     elif check_message(['sleep']):
         sleep.go_to_sleep()
-    
+        
+    elif check_message(['play', 'music']) or check_message(['music']):
+        play_music.play_random(music_path)
+        
+    elif check_message(['play']):
+        play_music.play_specific_music(speech_text, music_path)
+            
     else:
         general_conversations.undefined()
  
